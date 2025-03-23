@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace HomeMade.Infrastructure.Data
 {
-    class ApplicationDbContext : DbContext
+    public class ApplicationDbContext : DbContext
     {
         public ApplicationDbContext(DbContextOptions options) : base(options)
         {
