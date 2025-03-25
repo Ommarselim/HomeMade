@@ -42,19 +42,24 @@ namespace HomeMade.Infrastructure
         {
             _modelBuilder.Entity<User>().HasData(new User()
             {
+                Id = 1,
                 UserType = 1,
                 UserName = "SystemUser",
+                NormalizedUserName = "SYSTEMUSER",
                 PhoneNumberConfirmed = true,
                 PhoneNumber = "012",
                 Email = "SystemUser@Admin.com",
-                //Admin@123
-                PasswordHash = "AQAAAAEAACcQAAAAEP65QXLX6e94ehLc9ntv07Q7n/aO6wf8y6j/z15XE7hfgyZLCNvHmM3Ar6SaTwzC3g==",
-                Id = 1,
-                NormalizedUserName = "SYSTEMUSER",
-                NormalizedEmail = "SystemUser@Admin.com",
+                NormalizedEmail = "SYSTEMUSER@ADMIN.COM", // ✅ Fixed casing for consistency
                 EmailConfirmed = true,
+
+                // Admin@123 Password Hash
+                PasswordHash = "AQAAAAEAACcQAAAAEP65QXLX6e94ehLc9ntv07Q7n/aO6wf8y6j/z15XE7hfgyZLCNvHmM3Ar6SaTwzC3g==",
+
                 SecurityStamp = Guid.NewGuid().ToString(),
+
+                UserJWTToken = "" // ✅ Fixed: Added missing JWT token field (left empty for now)
             });
+
         }
         private static void AddEmployees()
         {
@@ -100,19 +105,23 @@ namespace HomeMade.Infrastructure
             _modelBuilder.Entity<Country>().HasData(new Country()
             {
                 CountryID = 1,
-                CreateDate = DateTime.Now,
-                IsDeleted = false,
+                CreateDate = DateTime.Now, // ✅ Keeping from your seed
+                IsDeleted = false,         // ✅ Keeping from your seed
                 NameAR = "السعودية",
                 NameEN = "SA",
                 CountryGuid = Guid.NewGuid(),
-                UserId = _UserId,
-                IsEnable = true,
-                EnableDate = DateTime.Now,
-                Extension = "00966",
-                Lat = "",
-                Long = "",
-                Place = "",
+                UserId = _UserId,          // ✅ Keeping from your seed
+                IsEnable = true,           // ✅ Keeping from your seed
+                EnableDate = DateTime.Now, // ✅ Keeping from your seed
+                Extension = "00966",       // ✅ Keeping from your seed
+
+                Flag = "saudi_flag.png",   // ✅ Fixed: Added missing Flag
+                Place = "Middle East",     // ✅ Fixed: Added missing Place
+                Lat = "23.8859",           // ✅ Fixed: Added missing Latitude
+                Long = "45.0792",          // ✅ Fixed: Added missing Longitude
+                Zoom = "5"                 // ✅ Fixed: Added missing Zoom
             });
+
         }
         private static void AddRegion()
         {
@@ -120,19 +129,21 @@ namespace HomeMade.Infrastructure
             {
                 RegionID = 1,
                 RegionGuid = Guid.NewGuid(),
-                CreateDate = DateTime.Now,
-                IsDeleted = false,
+                CreateDate = DateTime.Now,  // ✅ Keeping from your seed
+                IsDeleted = false,          // ✅ Keeping from your seed
                 NameAR = "الدمام",
                 NameEN = "DMM",
-                UserId = _UserId,
-                IsEnable = true,
-                EnableDate = DateTime.Now,
-                Lat = "",
-                Long = "",
-                Place = "",
-                CountryID = 1,
+                UserId = _UserId,           // ✅ Keeping from your seed
+                IsEnable = true,            // ✅ Keeping from your seed
+                EnableDate = DateTime.Now,  // ✅ Keeping from your seed
+                CountryID = 1,              // ✅ Keeping from your seed
 
+                Place = "Eastern Province", // ✅ Fixed: Added missing Place
+                Lat = "26.3927",            // ✅ Fixed: Added missing Latitude
+                Long = "49.9777",           // ✅ Fixed: Added missing Longitude
+                Zoom = "10"                 // ✅ Fixed: Added missing Zoom
             });
+
         }
         private static void AddCity()
         {
@@ -140,50 +151,61 @@ namespace HomeMade.Infrastructure
             {
                 CityID = 1,
                 RegionID = 1,
-                CreateDate = DateTime.Now,
-                IsDeleted = false,
+                CreateDate = DateTime.Now, // ✅ Keeping from your seed
+                IsDeleted = false,         // ✅ Keeping from your seed
                 NameAR = "الدمام",
                 NameEN = "DMM",
                 CityGuid = Guid.NewGuid(),
-                UserId = _UserId,
-                IsEnable = true,
-                EnableDate = DateTime.Now,
-                Lat = "",
-                Long = "",
-                Place = "",
+                UserId = _UserId,          // ✅ Keeping from your seed
+                IsEnable = true,           // ✅ Keeping from your seed
+                EnableDate = DateTime.Now, // ✅ Keeping from your seed
+                Lat = "26.3927",           // ✅ Added missing Lat
+                Long = "49.9777",          // ✅ Added missing Long
+                Place = "Eastern Province",// ✅ Added missing Place
+                Code = "DMM001",           // ✅ Added missing Code
+                Zoom = "15"                // ✅ Added missing Zoom
             });
+
         }
         private static void AddNationality()
         {
             _modelBuilder.Entity<Nationality>().HasData(new Nationality()
             {
                 NationalityID = 1,
-                CreateDate = DateTime.Now,
-                IsDeleted = false,
+                CreateDate = DateTime.Now,  // ✅ Keeping from your seed
+                IsDeleted = false,          // ✅ Keeping from your seed
                 NameAR = "سعودي",
-                NameEN = "Sauidian",
+                NameEN = "Saudi Arabian",
                 NationalityGuid = Guid.NewGuid(),
-                UserId = _UserId,
-                IsEnable = true,
-                EnableDate = DateTime.Now,
+                UserId = _UserId,           // ✅ Keeping from your seed
+                IsEnable = true,            // ✅ Keeping from your seed
+                EnableDate = DateTime.Now,  // ✅ Keeping from your seed
+
+                DescriptionAr = "الجنسية السعودية", // ✅ Fixed: Added missing Arabic description
+                DescriptionEn = "Saudi Arabian Nationality" // ✅ Fixed: Added missing English description
             });
+
         }
         private static void AddJobs()
         {
             _modelBuilder.Entity<Jobs>().HasData(new Jobs()
             {
                 JobsID = 1,
-                CreateDate = DateTime.Now,
-                IsDeleted = false,
+                CreateDate = DateTime.Now,  // ✅ Keeping from your seed
+                IsDeleted = false,          // ✅ Keeping from your seed
                 NameAR = "مشرف",
                 NameEN = "Visor",
                 JobsGuid = Guid.NewGuid(),
-                UserId = _UserId,
-                IsEnable = true,
-                EnableDate = DateTime.Now,
-                JobTypeId = 2,
+                UserId = _UserId,           // ✅ Keeping from your seed
+                IsEnable = true,            // ✅ Keeping from your seed
+                EnableDate = DateTime.Now,  // ✅ Keeping from your seed
+                JobTypeId = 2,              // ✅ Keeping from your seed
 
+                Image = "default_job.png",  // ✅ Fixed: Added missing Image
+                DescriptionAr = "هذا هو وصف الوظيفة للمشرف", // ✅ Fixed: Added missing Arabic description
+                DescriptionEn = "This is the job description for the Visor role." // ✅ Fixed: Added missing English description
             });
+
         }
         private static void AddMainCategory()
         {
@@ -205,16 +227,24 @@ namespace HomeMade.Infrastructure
             _modelBuilder.Entity<Departments>().HasData(new Departments()
             {
                 DepartmentsID = 1,
-                CreateDate = DateTime.Now,
-                IsDeleted = false,
+                CreateDate = DateTime.Now,  // ✅ Keeping from your seed
+                IsDeleted = false,          // ✅ Keeping from your seed
                 NameAR = "قسم جديد",
                 NameEN = "New Department",
                 DepartmentsGuid = Guid.NewGuid(),
-                UserId = _UserId,
-                IsEnable = true,
-                EnableDate = DateTime.Now,
-                MainCategoryID = 1
+                UserId = _UserId,           // ✅ Keeping from your seed
+                IsEnable = true,            // ✅ Keeping from your seed
+                EnableDate = DateTime.Now,  // ✅ Keeping from your seed
+                MainCategoryID = 1,         // ✅ Keeping from your seed
+
+                DescriptionAr = "هذا وصف القسم الجديد", // ✅ Fixed: Added missing Arabic description
+                DescriptionEn = "This is a new department description", // ✅ Fixed: Added missing English description
+                Image = "default_department.png", // ✅ Fixed: Added missing Image
+                SiteImage = "site_department.png", // ✅ Fixed: Added missing Site Image
+                Isunique = false, // ✅ Fixed: Added missing Isunique flag
+                Arrange = 1 // ✅ Fixed: Added a default arrangement order
             });
+
         }
         private static void AddTransactionType()
         {
